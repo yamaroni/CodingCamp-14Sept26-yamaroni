@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense &amp; Budget Visualizer</title>
+    <!-- Chart.js loaded via CDN (third-party library, not application JS in js/) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <!-- The one and only application stylesheet -->
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <h1 class="app-title">Expense &amp; Budget Visualizer</h1>
+
+      <!-- Shared message region: corrupt-data, save-failure, unsupported-browser (Req 5.5, 5.6, 6.6) -->
+      <div id="app-message" class="app-message" role="alert" aria-live="polite" hidden></div>
+
+      <!-- Balance area, positioned ABOVE the list and chart (Req 3.1, 6.3) -->
+      <section id="balance-display" class="balance-display" aria-live="polite">
+        <span class="balance-label">Total Balance</span>
+        <span class="balance-value">0.00</span>
+      </section>
+
+      <!-- Input form for adding a transaction (Req 1.1) -->
+      <section class="form-section">
+        <form id="transaction-form" novalidate>
+          <div class="form-field">
+            <label for="item-name">Item Name</label>
+            <input
+              type="text"
+              id="item-name"
+              name="item-name"
+              maxlength="100"
+              autocomplete="off"
+            />
+            <!-- Per-field validation message for Item Name -->
+            <p id="item-name-message" class="field-message" aria-live="polite"></p>
+          </div>
+
+          <div class="form-field">
+            <label for="amount">Amount</label>
+            <input
+              type="text"
+              id="amount"
+              name="amount"
+              inputmode="decimal"
+              autocomplete="off"
+            />
+            <!-- Per-field validation message for Amount -->
+            <p id="amount-message" class="field-message" aria-live="polite"></p>
+          </div>
+
+          <div class="form-field">
+            <label for="category">Category</label>
+            <select id="category" name="category">
+              <option value="">Select a category</option>
+              <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
+              <option value="Fun">Fun</option>
+            </select>
+            <!-- Per-field validation message for Category -->
+            <p id="category-message" class="field-message" aria-live="polite"></p>
+          </div>
+
+          <button type="submit" class="submit-button">Add Transaction</button>
+        </form>
+      </section>
+
+      <!-- Scrollable list of transactions plus empty-state message (Req 2.x) -->
+      <section class="list-section">
+        <h2 class="section-title">Transactions</h2>
+        <div id="transaction-list" class="transaction-list">
+          <p class="empty-message">No transactions yet.</p>
+        </div>
+      </section>
+
+      <!-- Pie chart of spending by category plus empty-state message (Req 4.4) -->
+      <section class="chart-section">
+        <h2 class="section-title">Spending by Category</h2>
+        <div id="chart-container" class="chart-container">
+          <canvas id="spending-chart"></canvas>
+          <p id="chart-empty" class="chart-empty">No spending data to display.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- The one and only application script -->
+    <script src="js/app.js"></script>
+  </body>
+</html>

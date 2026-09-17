@@ -1,0 +1,163 @@
+/* ==========================================================================
+   Expense & Budget Visualizer — styles.css
+   Base layout only (scaffolding). Visual polish arrives in a later task.
+   Key constraints enforced here:
+   - Balance is positioned ABOVE the transaction list and chart (Req 6.3).
+   - Body text is at least 14px (Req 6.3).
+   ========================================================================== */
+
+/* Base reset + readable body text (>= 14px per Req 6.3) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  font-size: 16px; /* >= 14px minimum (Req 6.3) */
+  line-height: 1.5;
+  color: #1f2933;
+  background-color: #f5f7fa;
+}
+
+/* Vertical layout keeps balance above list and chart (Req 6.3) */
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.app-title {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  margin: 0 0 8px;
+}
+
+/* Shared message region (corrupt-data, save-failure, unsupported-browser) */
+.app-message {
+  padding: 10px 14px;
+  border-radius: 6px;
+  background-color: #fdecea;
+  color: #611a15;
+}
+
+.app-message[hidden] {
+  display: none;
+}
+
+/* Balance area — rendered first in the DOM so it sits above list and chart */
+.balance-display {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+.balance-label {
+  font-size: 0.875rem; /* 14px */
+  color: #52606d;
+}
+
+.balance-value {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Input form */
+.form-section {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+#transaction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-field label {
+  font-size: 0.875rem; /* 14px */
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field select {
+  font-size: 1rem;
+  padding: 8px 10px;
+  border: 1px solid #cbd2d9;
+  border-radius: 6px;
+}
+
+.field-message {
+  margin: 0;
+  min-height: 1em;
+  font-size: 0.8125rem; /* 13px is used only for inline hints; body text stays >= 14px */
+  color: #b91c1c;
+}
+
+.submit-button {
+  font-size: 1rem;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #2563eb;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Transaction list — scrollable container (Req 2.2) */
+.list-section {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.transaction-list {
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.empty-message {
+  margin: 0;
+  color: #52606d;
+}
+
+/* Chart area */
+.chart-section {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.chart-container {
+  position: relative;
+  min-height: 240px;
+}
+
+.chart-empty {
+  margin: 0;
+  color: #52606d;
+}
